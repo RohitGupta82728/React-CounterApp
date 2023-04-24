@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import './app.css';
+const App = () => {
+  let [value,setValue] = useState(0);
 
-function App() {
+  const handleClick=(e)=>{
+    if(e.target.name==='increment'){
+      value+=1;
+    }
+    else{
+      if(value<1){
+        value=value;
+      }
+      else{
+      value-=1;
+      }
+    }
+    setValue(value);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+        <div className='counter'>
+            <h1>{value}</h1>
+        </div>
+        <div className='buttons'>
+          <button onClick={handleClick} name='increment' value={value}>+</button>
+          <button onClick={handleClick} name='decrement' value={value}>-</button>
+        </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
+
